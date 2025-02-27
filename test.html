@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Local Whisper Demo</title>
+</head>
+<body>
+  <button id="startBtn">Start Recording</button>
+  <button id="stopBtn">Stop Recording</button>
+  
+  <textarea id="transcription" rows="10" cols="50"></textarea>
+  
+  <script src="assets/js/vsSTT.js"></script>
+
+  <script>
+    const textArea = document.getElementById("transcription");
+    const stt = new vsSTT({
+      apiUrl: '{URL TO NodeJS Endpoint}',
+      model: 'small.en',
+      lang: 'en',
+      segmentDuration: 10000, // 10s
+      textArea
+    });
+    document.getElementById("startBtn").addEventListener("click", () => {
+      stt.start();
+    });
+
+    document.getElementById("stopBtn").addEventListener("click", () => {
+      stt.stop();
+    });
+  </script>
+</body>
+</html>
